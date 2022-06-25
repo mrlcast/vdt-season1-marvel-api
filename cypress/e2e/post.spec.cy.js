@@ -5,7 +5,7 @@ describe('POST /characters', function(){
     })
 
     context('Cadastro de personagens',function(){
-        it('Deve cadastrar um personagem', function(){
+        it.only('Deve cadastrar um personagem', function(){
             const character = {
                 name:'Peter Parker',
                 alias:'Miranha',

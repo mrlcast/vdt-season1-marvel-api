@@ -65,7 +65,7 @@ Cypress.Commands.add('getCharacterByName',function(payload){
 Cypress.Commands.add('getCharacterById',function(payload){
     cy.api({
         method: 'GET',
-        url: '/characters?_id='+payload,
+        url: '/characters/'+payload,
         name: payload,
         headers: {
             Authorization: Cypress.env('token')
@@ -79,7 +79,7 @@ Cypress.Commands.add('getCharacterById',function(payload){
 Cypress.Commands.add('deleteCharacter',function(payload){
     cy.api({
         method: 'DELETE',
-        url: '/back2thepast/'+payload,
+        url: '/characters/'+payload,
         name: payload,
         headers: {
             Authorization: Cypress.env('token')

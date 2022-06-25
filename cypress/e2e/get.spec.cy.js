@@ -17,16 +17,17 @@ describe('GET /characters', function(){
     })
 
     it('Busca o personagem por id',function(){
-        const id = '62a0c45c3d5db40016de99c9'
+        const id = '62b74c75988a940016018944'
         cy.getCharacterById(id).then(function(response){
-                expect(response.status).to.eql(400)
+                expect(response.status).to.eql(200)
             })
     })
     
-    it('Busca o personagem por id deve retornar 404',function(){
-        const id = '9999999999999999'
+    it.only('Busca o personagem por id deve retornar 404',function(){
+        const id = '62b75758988a940016018a85'
+        cy.deleteCharacter(id)
         cy.getCharacterById(id).then(function(response){
-                expect(response.status).to.eql(400)
+                expect(response.status).to.eql(404)
             })
     })
 })
