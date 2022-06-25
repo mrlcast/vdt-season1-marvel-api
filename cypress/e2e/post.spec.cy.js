@@ -5,25 +5,28 @@ describe('POST /characters', function(){
     })
 
     context('Cadastro de personagens',function(){
-        it.only('Deve cadastrar um personagem', function(){
+
+        var faker = require('ng-faker')
+
+        it('Deve cadastrar um personagem', function(){
             const character = {
-                name:'Peter Parker',
-                alias:'Miranha',
+                name: faker.name.firstName(),
+                alias: faker.name.lastName(),
                 team: ['Vingadores'],
                 active: true
             }
     
             cy.postCharacter(character).then(function(response){
                 expect(response.status).to.eql(201)
-                expect(response.body.character_id.length).to.eql(24)
+                //expect(response.body.character_id.length).to.eql(24)
             })
         })
         
         context('Quando o personagem já existe',function(){
         
             const character = {
-                name:'Steve Rogers',
-                alias:'Cap',
+                name: faker.name.firstName(),
+                alias: faker.name.lastName(),
                 team: ['Vingadores'],
                 active: true
             }

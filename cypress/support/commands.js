@@ -11,7 +11,6 @@ Cypress.Commands.add('setToken', function(){
         Cypress.env('token',response.body.token)
     })
 })
-
 Cypress.Commands.add('back2ThePast',function(){
     cy.api({
         method:'DELETE',
@@ -20,7 +19,6 @@ Cypress.Commands.add('back2ThePast',function(){
         expect(response.status).to.eql(200)
     })
 })
-
 Cypress.Commands.add('postCharacter',function(payload){
     cy.api({
         method: 'POST',
@@ -35,7 +33,7 @@ Cypress.Commands.add('postCharacter',function(payload){
     })
 })
 
-Cypress.Commands.add('getCharacter',function(){
+Cypress.Commands.add('getCharacters',function(){
     cy.api({
         method: 'GET',
         url: '/characters',
@@ -48,11 +46,11 @@ Cypress.Commands.add('getCharacter',function(){
     })
 })
 
-Cypress.Commands.add('getCharacterByName',function(payload){
+Cypress.Commands.add('getCharacterByName',function(characterName){
     cy.api({
         method: 'GET',
-        url: '/characters?name='+payload,
-        name: payload,
+        url: '/characters',
+        qs: { name: characterName},
         headers: {
             Authorization: Cypress.env('token')
         },
@@ -61,7 +59,6 @@ Cypress.Commands.add('getCharacterByName',function(payload){
         return response
     })
 })
-
 Cypress.Commands.add('getCharacterById',function(payload){
     cy.api({
         method: 'GET',
@@ -75,7 +72,6 @@ Cypress.Commands.add('getCharacterById',function(payload){
         return response
     })
 })
-
 Cypress.Commands.add('deleteCharacter',function(payload){
     cy.api({
         method: 'DELETE',
@@ -88,4 +84,11 @@ Cypress.Commands.add('deleteCharacter',function(payload){
     }).then(function(response){
         return response
     })
+})
+
+Cypress.Commands.add('populateCharacters', function(characters){
+    
+    characters.forEach(character => {
+        cy.postCharacter(character)
+    });
 })
