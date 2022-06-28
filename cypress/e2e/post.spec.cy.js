@@ -1,9 +1,4 @@
 describe('POST /characters', function(){
-    before (function(){
-        cy.setToken()
-        cy.back2ThePast()
-    })
-
     context('Cadastro de personagens',function(){
 
         var faker = require('ng-faker')

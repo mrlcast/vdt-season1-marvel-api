@@ -22,8 +22,6 @@ describe('GET /characters', function(){
     ] 
 
     before (function(){
-        cy.setToken()
-        cy.back2ThePast()
         cy.populateCharacters(characters)
     })
 
@@ -54,11 +52,6 @@ describe('GET/characters/id', function(){
             active: true
     }
 
-    before (function(){
-        cy.setToken()
-        cy.back2ThePast()
-    })
-
     context('quando tenho um personagem criado', function(){
         
         before(function(){
@@ -67,7 +60,7 @@ describe('GET/characters/id', function(){
             })
         })
 
-        it.only('Busca o personagem pelo id', function(){
+        it('Busca o personagem pelo id', function(){
             const id = Cypress.env('characterId')
             cy.getCharacterById(id).then(function(response){
                 expect(response.status).to.eql(200)

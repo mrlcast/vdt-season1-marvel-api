@@ -17,5 +17,9 @@
 import './commands'
 import '@bahmutov/cy-api'
 
+before (function(){
+    cy.setToken()
+})
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
